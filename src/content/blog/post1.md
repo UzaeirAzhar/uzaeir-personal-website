@@ -2,7 +2,7 @@
 title: "Understanding the Magic Behind JavaScript: How It Works in the Background"
 description: "Delve into JavaScript's essence: compilation, components, and frameworks, unlocking the heart of web development."
 pubDate: "Aug 03 2023"
-heroImage: "public/javascript.jpg"
+heroImage: "/js.png"
 badge: "Javascript"
 ---
 ## Introduction
