@@ -24,8 +24,7 @@
     "sharp": "^0.32.1"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.9",
-    "gh-pages": "^5.0.0"
+    "@tailwindcss/typography": "^0.5.9"
   },
   "homepage": "https://uzaeirazhar.github.io/uzaeir-personal-website"
 }
