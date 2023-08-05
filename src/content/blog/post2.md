@@ -2,7 +2,7 @@
 title: "A Deep Dive into the JavaScript Compilation Process"
 description: "Unveiling JavaScript's Compilation: From code to magic."
 pubDate: "Aug 04 2023"
-heroImage: "public/javascript.jpg"
+heroImage: "/js.png"
 badge: "Javascript"
 ---
 
