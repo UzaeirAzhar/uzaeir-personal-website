@@ -9,8 +9,7 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "deploy": "gh-pages -d dist"
+    "astro": "astro"
   },
   "dependencies": {
     "@astrojs/image": "^0.17.2",
@@ -25,6 +24,5 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9"
-  },
-  "homepage": "https://uzaeirazhar.github.io/uzaeir-personal-website"
+  }
 }
