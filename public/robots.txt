@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://uzaeirazhar.github.io/uzaeir-personal-website/sitemap-index.xml
+Sitemap: https://www.uzair-khan.com/sitemap-index.xml
