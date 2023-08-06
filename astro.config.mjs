@@ -8,8 +8,7 @@ import image from "@astrojs/image";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://UzaeirAzhar.github.io',
-  base: '/uzaeir-personal-website',
+  site: 'https://www.uzair-khan.com',
   integrations: [mdx(), sitemap(), tailwind(), image(
     {
       serviceEntryPoint: '@astrojs/image/sharp',
