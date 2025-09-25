@@ -34,7 +34,7 @@ jobs:
 
         # 5. Upload artifacts
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./dist
   deploy:
@@ -47,7 +47,7 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deploy
         uses: actions/deploy-pages@v4
-        
+
       - name: Show Preview URL
         run: |
           BRANCH_NAME=${GITHUB_REF#refs/heads/}
