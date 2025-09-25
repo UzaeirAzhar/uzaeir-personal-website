@@ -32,12 +32,20 @@ jobs:
       - name: Remove CNAME for preview
         run: rm -f ./dist/CNAME || true
 
-      # 5. Deploy to GitHub Pages
+      # 5. Move build to branch-specific folder
+      - name: Move build to branch-specific folder
+        run: |
+          BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          mkdir -p ./dist/preview/$BRANCH_NAME
+          mv ./dist/* ./dist/preview/$BRANCH_NAME/
+
+      # 6. Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         id: deploy
         uses: actions/deploy-pages@v4
 
-      # 6. Show the preview URL
+      # 7. Show the preview URL
       - name: Show Preview URL
         run: |
-            echo "Preview URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+          BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          echo "Preview URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/preview/$BRANCH_NAME/"
