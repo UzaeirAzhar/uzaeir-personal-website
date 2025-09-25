@@ -12,7 +12,7 @@ permissions:
   id-token: write
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -32,19 +32,22 @@ jobs:
       - name: Remove CNAME for preview
         run: rm -f ./dist/CNAME || true
 
-      # 5. Move build to branch-specific folder
-      - name: Move build to branch-specific folder
-        run: |
-          BRANCH_NAME=${GITHUB_REF#refs/heads/}
-          mkdir -p ./dist/preview/$BRANCH_NAME
-          mv ./dist/* ./dist/preview/$BRANCH_NAME/
-
-      # 6. Deploy to GitHub Pages
+        # 5. Upload artifacts
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    steps:
       - name: Deploy to GitHub Pages
         id: deploy
         uses: actions/deploy-pages@v4
-
-      # 7. Show the preview URL
+        
       - name: Show Preview URL
         run: |
           BRANCH_NAME=${GITHUB_REF#refs/heads/}
