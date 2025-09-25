@@ -12,7 +12,7 @@ permissions:
   id-token: write
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -32,18 +32,12 @@ jobs:
       - name: Remove CNAME for preview
         run: rm -f ./dist/CNAME || true
 
-      # 5. Upload Pages artifact
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: ./dist
-
-      # 6. Deploy to GitHub Pages
+      # 5. Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         id: deploy
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
 
-      # 7. Show the preview URL
+      # 6. Show the preview URL
       - name: Show Preview URL
         run: |
             echo "Preview URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
