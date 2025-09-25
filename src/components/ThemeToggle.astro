@@ -1,0 +1,82 @@
+<div class='fixed top-6 right-8'>
+  <label class='flex items-center cursor-pointer select-none'>
+    <div class='relative'>
+      <input type='checkbox' id='theme-toggle' class='sr-only' />
+      <!-- Track -->
+      <div
+        class='w-14 h-8 bg-gray-300 dark:bg-gray-600 rounded-full transition-colors'
+      >
+      </div>
+      <!-- Knob -->
+      <div
+        id='theme-knob'
+        class='absolute left-0 top-0 w-8 h-8 bg-white dark:bg-gray-800 rounded-full shadow-md transform transition-transform flex items-center justify-center'
+      >
+        <!-- Sun icon -->
+        <svg
+          id='sun-icon'
+          class='absolute w-5 h-5 text-yellow-500 transition-opacity duration-200'
+          xmlns='http://www.w3.org/2000/svg'
+          viewBox='0 0 24 24'
+          fill='currentColor'
+        >
+          <path
+            d='M12 4.75a.75.75 0 01.75.75v1a.75.75 0 01-1.5 0v-1A.75.75 0 0112 4.75zM12 17.5a.75.75 0 01.75.75v1a.75.75 0 01-1.5 0v-1a.75.75 0 01.75-.75zM4.75 12a.75.75 0 01.75-.75h1a.75.75 0 010 1.5h-1A.75.75 0 014.75 12zm12.5 0a.75.75 0 01.75-.75h1a.75.75 0 010 1.5h-1a.75.75 0 01-.75-.75zM6.22 6.22a.75.75 0 011.06 0l.71.71a.75.75 0 11-1.06 1.06l-.71-.71a.75.75 0 010-1.06zm10.6 10.6a.75.75 0 011.06 0l.71.71a.75.75 0 11-1.06 1.06l-.71-.71a.75.75 0 010-1.06zM6.22 17.78a.75.75 0 010-1.06l.71-.71a.75.75 0 011.06 1.06l-.71.71a.75.75 0 01-1.06 0zm10.6-10.6a.75.75 0 010-1.06l.71-.71a.75.75 0 111.06 1.06l-.71.71a.75.75 0 01-1.06 0zM12 8a4 4 0 100 8 4 4 0 000-8z'
+          ></path>
+        </svg>
+
+        <!-- Moon icon -->
+        <svg
+          id='moon-icon'
+          class='absolute w-5 h-5 text-gray-100 transition-opacity duration-200'
+          xmlns='http://www.w3.org/2000/svg'
+          viewBox='0 0 24 24'
+          fill='currentColor'
+        >
+          <path d='M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z'></path>
+        </svg>
+      </div>
+    </div>
+  </label>
+</div>
+
+<script type='module'>
+  if (typeof window !== 'undefined') {
+    const toggle = document.getElementById('theme-toggle')
+    const knob = document.getElementById('theme-knob')
+    const sun = document.getElementById('sun-icon')
+    const moon = document.getElementById('moon-icon')
+
+    if (toggle && knob && sun && moon) {
+      // Initialize theme from storage
+      const savedTheme = localStorage.getItem('data-theme') || 'light'
+      const isDark = savedTheme === 'dark'
+      document.documentElement.setAttribute('data-theme', savedTheme)
+      toggle.checked = isDark
+
+      // Set initial knob position
+      knob.style.transition = 'none'
+      knob.style.transform = isDark ? 'translateX(100%)' : 'translateX(0%)'
+      sun.style.opacity = isDark ? '0' : '1'
+      moon.style.opacity = isDark ? '1' : '0'
+
+      // Enable transition after initial render
+      requestAnimationFrame(() => {
+        knob.style.transition = 'transform 0.2s ease'
+        sun.style.transition = 'opacity 0.2s ease'
+        moon.style.transition = 'opacity 0.2s ease'
+      })
+
+      toggle.addEventListener('change', () => {
+        const newTheme = toggle.checked ? 'dark' : 'light'
+        document.documentElement.setAttribute('data-theme', newTheme)
+        localStorage.setItem('data-theme', newTheme)
+        knob.style.transform = toggle.checked
+          ? 'translateX(100%)'
+          : 'translateX(0%)'
+        sun.style.opacity = toggle.checked ? '0' : '1'
+        moon.style.opacity = toggle.checked ? '1' : '0'
+      })
+    }
+  }
+</script>
